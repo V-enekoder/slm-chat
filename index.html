@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Chatbot Científico-Ajedrecista | UNEG</title>
+        <link rel="stylesheet" href="style.css" />
+        <!-- Iconos -->
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+        />
+        <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    </head>
+    <body>
+        <div class="main-container">
+            <header>
+                <div class="header-top">
+                    <div class="status-dot"></div>
+                    <button
+                        onclick="reiniciarChat()"
+                        class="btn-restart"
+                        title="Nueva Partida"
+                    >
+                        <i class="fas fa-undo"></i> Reiniciar
+                    </button>
+                </div>
+                <h1>
+                    <i class="fas fa-microscope"></i> Grandmaster Lab
+                    <i class="fas fa-chess-knight"></i>
+                </h1>
+                <p>IA Basada en SLM (Qwen 2.5)</p>
+            </header>
+
+            <div id="chat-box" class="chat-box">
+                <!-- Aquí aparecerán los mensajes -->
+                <div class="message assistant">
+                    ¡Saludos, colega! El tablero está listo y los matraces
+                    calientes. ¿En qué experimento o apertura trabajaremos hoy?
+                </div>
+            </div>
+
+            <div class="input-area">
+                <input
+                    type="text"
+                    id="user-input"
+                    placeholder="Escribe tu jugada o pregunta científica..."
+                    onkeypress="if(event.key === 'Enter') enviarMensaje()"
+                />
+                <button onclick="enviarMensaje()" id="send-btn">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </div>
+        </div>
+
+        <script src="app.js"></script>
+    </body>
+</html>
