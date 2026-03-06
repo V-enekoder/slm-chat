@@ -239,3 +239,32 @@ button:hover {
     border-radius: 4px;
     font-family: monospace;
 }
+
+.temp-control {
+    margin-top: 15px;
+    padding: 10px;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    font-size: 0.8rem;
+}
+
+.temp-control label {
+    display: block;
+    margin-bottom: 5px;
+    color: var(--accent-color);
+    font-weight: bold;
+}
+
+#temp-slider {
+    width: 100%;
+    cursor: pointer;
+    accent-color: var(--accent-color);
+}
+
+.temp-labels {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.65rem;
+    opacity: 0.6;
+    margin-top: 5px;
+}

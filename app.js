@@ -44,18 +44,17 @@ function reiniciarChat() {
   }
 }
 
-// Función para enviar mensaje a Ollama
 async function enviarMensaje() {
   const input = document.getElementById("user-input");
   const mensajeUser = input.value;
+
+  const tempValue = document.getElementById("temp-slider").value;
 
   if (!mensajeUser) return;
 
   renderizarMensaje("user", mensajeUser);
   input.value = "";
-
   historial.push({ role: "user", content: mensajeUser });
-
   const chatBox = document.getElementById("chat-box");
   const loadingDiv = document.createElement("div");
   loadingDiv.classList.add("message", "assistant", "typing-indicator");
@@ -72,18 +71,18 @@ async function enviarMensaje() {
         model: "qwen2.5:3b",
         messages: historial,
         stream: false,
+        options: {
+          temperature: parseFloat(tempValue),
+        },
       }),
     });
 
     const data = await response.json();
 
-    // Quitar indicador de carga
     const temp = document.getElementById("loading-temp");
     if (temp) temp.remove();
 
     const respuestaIA = data.message.content;
-
-    // Guardar respuesta en historial y mostrarla
     historial.push({ role: "assistant", content: respuestaIA });
     renderizarMensaje("assistant", respuestaIA);
   } catch (error) {
