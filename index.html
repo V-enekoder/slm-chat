@@ -1,78 +1,95 @@
 <!doctype html>
 <html lang="es">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Chatbot Científico-Ajedrecista | UNEG</title>
-        <link rel="stylesheet" href="style.css" />
-        <!-- Iconos -->
-        <link
-            rel="stylesheet"
-            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
-        />
-        <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-    </head>
-    <body>
-        <div class="main-container">
-            <header>
-                <div class="header-top">
-                    <div class="status-dot"></div>
-                    <button
-                        onclick="reiniciarChat()"
-                        class="btn-restart"
-                        title="Nueva Partida"
-                    >
-                        <i class="fas fa-undo"></i> Reiniciar
-                    </button>
-                </div>
-                <h1>
-                    <i class="fas fa-microscope"></i> Grandmaster Lab
-                    <i class="fas fa-chess-knight"></i>
-                </h1>
-                <p>IA Basada en SLM (Qwen 2.5)</p>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MasterClass de Cocina: Asistente Gastronómico | UNEG</title>
+    <link rel="stylesheet" href="style.css" />
+    <!-- Iconos -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css "
+    />
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js "></script>
+  </head>
+  <body>
+    <!-- Imagen de Gordon Ramsay en el lado izquierdo -->
+    <img 
+      src="https://kimi-web-img.moonshot.cn/img/upload.wikimedia.org/4c4b1a8cfaf39d7241b32049f9af9039b5b869da.jpg" 
+      alt="Gordon Ramsay" 
+      class="chef-image-left"
+    />
 
-                <div class="temp-control">
-                    <label for="temp-slider"
-                        >Temperatura del Núcleo:
-                        <span id="temp-val">0.7</span></label
-                    >
-                    <input
-                        type="range"
-                        id="temp-slider"
-                        min="0.1"
-                        max="1.0"
-                        step="0.1"
-                        value="0.7"
-                        oninput="document.getElementById('temp-val').innerText = this.value"
-                    />
-                    <div class="temp-labels">
-                        <span>Lógica (Científica)</span>
-                        <span>Creativa (Ajedrecista)</span>
-                    </div>
-                </div>
-            </header>
+    <!-- Imagen de Gordon Ramsay en el lado derecho -->
+    <img 
+      src="https://kimi-web-img.moonshot.cn/img/substackcdn.com/9128e633fdaaf5b581b7a2717165a19889edb2ea.jpeg" 
+      alt="Gordon Ramsay" 
+      class="chef-image-right"
+    />
 
-            <div id="chat-box" class="chat-box">
-                <!-- Aquí aparecerán los mensajes -->
-                <div class="message assistant">
-                    ¡Saludos, colega! El tablero está listo y los matraces
-                    calientes. ¿En qué experimento o apertura trabajaremos hoy?
-                </div>
-            </div>
-
-            <div class="input-area">
-                <input
-                    type="text"
-                    id="user-input"
-                    placeholder="Escribe tu jugada o pregunta científica..."
-                    onkeypress="if(event.key === 'Enter') enviarMensaje()"
-                />
-                <button onclick="enviarMensaje()" id="send-btn">
-                    <i class="fas fa-paper-plane"></i>
-                </button>
-            </div>
+    <div class="main-container">
+      <header>
+        <div class="header-top">
+          <div class="status-dot"></div>
+          <button
+            onclick="reiniciarChat()"
+            class="btn-restart"
+            title="Nueva Partida"
+          >
+            <i class="fas fa-undo"></i> Reiniciar
+          </button>
         </div>
+        <h1>
+          <i class="fa-solid fa-utensils"></i> Asistente Gastronómico
+          <i class="fa-solid fa-mortar-pestle"></i>
+        </h1>
+        <p>IA Basada en SLM (Qwen 2.5)</p>
 
-        <script src="app.js"></script>
-    </body>
+        <div class="temp-control">
+          <label for="temp-slider"
+            >Temperatura del Núcleo: <span id="temp-val">0.7</span></label
+          >
+          <input
+            type="range"
+            id="temp-slider"
+            min="0.1"
+            max="1.0"
+            step="0.1"
+            value="0.7"
+            oninput="document.getElementById('temp-val').innerText = this.value"
+          />
+          <div class="temp-labels">
+            <span>Estrella Michelin (Precisión)</span>
+            <span>¡PESADILLA EN LA COCINA! (Caos)</span>
+          </div>
+        </div>
+      </header>
+
+      <div id="chat-box" class="chat-box">
+        <!-- Aquí aparecerán los mensajes -->
+        <div class="message assistant typing-indicator">
+          <div class="bubbling">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+          <span>El Chef está pensando<span class="dots"></span></span>
+        </div>
+      </div>
+
+      <div class="input-area">
+        <input
+          type="text"
+          id="user-input"
+          placeholder="¿Qué vas a cocinar hoy? ¡Y que no esté crudo!"
+          onkeypress="if (event.key === 'Enter') enviarMensaje();"
+        />
+        <button onclick="enviarMensaje()" id="send-btn">
+          <i class="fas fa-paper-plane"></i>
+        </button>
+      </div>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
 </html>
