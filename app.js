@@ -73,20 +73,16 @@ function esConsultaDetallada(mensaje) {
     "vale",
   ];
 
-  // Si contiene palabras de receta, es detallada
   if (palabrasReceta.some((palabra) => mensajeLower.includes(palabra))) {
     return true;
   }
 
-  // Si es solo saludos o simples, no es detallada
   if (
     palabrasSimples.some((palabra) => mensajeLower.includes(palabra)) &&
     mensaje.length < 20
   ) {
     return false;
   }
-
-  // Por defecto, si es muy corto es simple, si es largo es detallada
   return mensaje.length > 30;
 }
 
@@ -97,7 +93,7 @@ function obtenerConfiguracion(esDetallada, tempValue) {
     return {
       temperature: parseFloat(tempValue),
       num_ctx: CONTEXTO_FIJO,
-      num_predict: 1500, // Límite de tokens largo
+      num_predict: 1500,
       top_k: 40,
       top_p: 0.9,
       repeat_penalty: 1.1,
@@ -107,7 +103,7 @@ function obtenerConfiguracion(esDetallada, tempValue) {
     return {
       temperature: parseFloat(tempValue),
       num_ctx: CONTEXTO_FIJO,
-      num_predict: 150, // Límite de tokens corto
+      num_predict: 150,
       top_k: 10,
       top_p: 0.7,
       repeat_penalty: 1.3,
@@ -116,7 +112,6 @@ function obtenerConfiguracion(esDetallada, tempValue) {
   }
 }
 
-// Función para mostrar mensajes en pantalla con animación mejorada
 function renderizarMensaje(rol, texto, esInicial = false) {
   const chatBox = document.getElementById("chat-box");
   const div = document.createElement("div");
@@ -137,7 +132,6 @@ function renderizarMensaje(rol, texto, esInicial = false) {
   return div;
 }
 
-// Función para mostrar indicador de escritura
 function mostrarIndicadorEscritura(esDetallada) {
   const chatBox = document.getElementById("chat-box");
   const loadingDiv = document.createElement("div");
@@ -235,10 +229,8 @@ async function enviarMensaje() {
     const reader = response.body.getReader();
     const decoder = new TextDecoder("utf-8");
 
-    // 🚨 SOLUCIÓN 2: Buffer para evitar que los pedazos incompletos rompan el JSON
     let buffer = "";
 
-    // 🚨 SOLUCIÓN 3: Temporizador para no colapsar el navegador renderizando Markdown muy rápido
     let ultimoRenderizado = Date.now();
 
     while (true) {
@@ -248,7 +240,6 @@ async function enviarMensaje() {
       buffer += decoder.decode(value, { stream: true });
       const lineas = buffer.split("\n");
 
-      // Guardamos la última línea en el buffer por si vino cortada a la mitad
       buffer = lineas.pop();
 
       for (const linea of lineas) {
@@ -260,7 +251,7 @@ async function enviarMensaje() {
             respuestaCompleta += data.message.content;
 
             const ahora = Date.now();
-            // Actualizamos el DOM solo cada 50ms (Esto arregla que "tire todo de una")
+            // Actualización el DOM solo cada 50ms
             if (ahora - ultimoRenderizado > 50) {
               divRespuesta.innerHTML = marked.parse(respuestaCompleta);
               const chatBox = document.getElementById("chat-box");
@@ -274,7 +265,6 @@ async function enviarMensaje() {
       }
     }
 
-    // Renderizado final para asegurar que no se quede nada por fuera
     divRespuesta.innerHTML = marked.parse(respuestaCompleta);
     const chatBox = document.getElementById("chat-box");
     chatBox.scrollTo({ top: chatBox.scrollHeight });
